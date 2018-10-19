@@ -34,8 +34,65 @@ namespace twozerofoureight
             // initialize board
             HandleChanges();
         }
+		public bool Fullboard()
+		{
+			int count = 0;
+			for (int i = 0; i < 4; i++)
+			{
+				for (int j = 0; j < 4; j++)
+				{
+					if (board[i, j] != 0)
+					{
+						count++;
+					}
+				}
+			}
+					for (int i = 0; i < 4; i++)
+				{
+					for (int j = 0; j < 4; j++)
+					{
+						if (j + 1 < 4 && board[i, j + 1] == board[i, j])
+						{
+							return false;
+						}
+						if (i + 1 < 4 && board[i + 1, j] == board[i, j])
+						{
+							return false;
+						}
+						if (j - 1 >= 0 && board[i, j - 1] == board[i, j])
+						{
+							return false;
+						}
+						if (i - 1 >= 0 && board[i - 1, j] == board[i, j])
+						{
+							return false;
+						}
+					}
+				}
+			if (count == 16)
+			{
+				return true;
+			}
+			return false;
+			
+		}
+		
+		
+		public int GetScore()
+		{
+			int score = 0;
+			for (int i = 0; i < 4; i++)
+			{
+				for (int j = 0; j < 4; j++)
+				{
+					
+					score += board[i, j];
+				}
+			}
+			return score;
+		}
 
-        public int[,] GetBoard()
+		public int[,] GetBoard()
         {
             return board;
         }
@@ -123,6 +180,7 @@ namespace twozerofoureight
             }
             HandleChanges(changed);
         }
+		
 
         public void PerformUp()
         {
