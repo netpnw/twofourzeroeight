@@ -110,7 +110,6 @@ namespace twozerofoureight
                 }
             }
         }
-
         // Perform shift and merge to the left of the given array.
         protected bool ShiftAndMerge(int[] buffer)
         {
